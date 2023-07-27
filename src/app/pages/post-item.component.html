@@ -1,0 +1,28 @@
+<div class="card mb-3">
+  <div class="card-header">
+    {{ post.title }}
+    <span
+      class="badge badge-{{
+        post.type === 'news'
+          ? 'warning'
+          : post.type === 'politic'
+          ? 'dark'
+          : 'primary'
+      }}"
+    >
+      {{ post.type }}
+    </span>
+  </div>
+  <div class="card-body">
+    <p *ngIf="post.active; else inactiveContent">Post Attivo</p>
+    <ng-template #inactiveContent>
+      <p>Post Inattivo</p>
+    </ng-template>
+    <button
+      class="btn btn-sm btn-{{ post.active ? 'secondary' : 'success' }}"
+      (click)="toggleActive()"
+    >
+      {{ post.active ? "Disattiva" : "Attiva" }} Post
+    </button>
+  </div>
+</div>
